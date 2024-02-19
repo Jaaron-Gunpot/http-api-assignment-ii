@@ -77,7 +77,7 @@ const onRequest = (request, response) => {
       return urlStruct.HEAD.notFound(request, response);
     }
     // I don't know why this return is needed and i am scared to remove it
-    return parseBody(request, response, urlStruct[request.method][parsedUrl.pathname]);;
+    return parseBody(request, response, urlStruct[request.method][parsedUrl.pathname]);
   }
 
   // if the method is served by the server, and the path is found, return the information
