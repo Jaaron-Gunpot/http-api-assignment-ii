@@ -5,7 +5,29 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
   
   <script>
-
+    const init = () =>{
+      const nameForm = document.getElementById('nameForm');
+      const userForm = document.getElementById('userForm');
+      const content = document.getElementById('content');
+      nameForm.onsubmit = (e) => {
+        e.preventDefault();
+        const name = document.getElementById('nameField').value;
+        const age = document.getElementById('ageField').value;
+        fetch('/addUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            'name':name, 
+            'age':age
+          })
+        }).then((response) => {
+          console.log(response);
+        });
+      };
+    }
+    window.onload = init;
   </script>
 </head>
 <body>

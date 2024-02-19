@@ -6,13 +6,15 @@
   "scripts": {
     "start": "node ./src/server.js",
     "pretest": "eslint ./src --fix",
-    "test": "echo \"Good job! All tests clear\""
+    "test": "echo \"Good job! All tests clear\"",
+    "nodemon": "nodemon -e js,html,css --watch ./src --watch ./client ./src/server.js"
   },
   "author": "Jaaron",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.29.1"
+    "eslint-plugin-import": "^2.29.1",
+    "nodemon": "^3.0.3"
   }
 }
