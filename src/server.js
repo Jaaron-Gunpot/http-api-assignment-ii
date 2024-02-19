@@ -1,5 +1,6 @@
 const http = require('http');
 const url = require('url');
+const query = require('querystring');
 const htmlHandler = require('./htmlHandler.js');
 const jsonHandler = require('./jsonResponses.js');
 
@@ -38,17 +39,20 @@ const onRequest = (request, response) => {
       return urlStruct.HEAD.notFound(request, response);
     }
     const body = [];
+
     request.on('error', (err) => {
-      console.log(err);
+      console.dir(err);
       response.statusCode = 400;
       response.end();
     });
+
     request.on('data', (chunk) => {
       body.push(chunk);
     });
+
     request.on('end', () => {
       const bodyString = Buffer.concat(body).toString();
-      const bodyParams = new URLSearchParams(bodyString);
+      const bodyParams = query.parse(bodyString);
       urlStruct[request.method][parsedUrl.pathname](request, response, bodyParams);
     });
   }

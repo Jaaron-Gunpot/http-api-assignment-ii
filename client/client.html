@@ -13,18 +13,20 @@
         e.preventDefault();
         const name = document.getElementById('nameField').value;
         const age = document.getElementById('ageField').value;
+        const data = `name=${name}&age=${age}`;
         fetch('/addUser', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
           },
-          body: JSON.stringify({
-            'name':name, 
-            'age':age
-          })
+          body: data
         }).then((response) => {
-          console.log(response);
+          response.json().then((data) => {
+            content.innerHTML = JSON.stringify(data);
+          });
         });
+        return false;
       };
       userForm.onsubmit = (e) => {
         e.preventDefault();
@@ -45,6 +47,7 @@
             <div>status:${response.status}</div>`;
           });
         }
+        return false;
       };
     }
     window.onload = init;
