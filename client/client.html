@@ -22,6 +22,10 @@
           },
           body: data
         }).then((response) => {
+          if(response.status == 204){
+            content.innerHTML = 'Content edited successfully';
+            return;
+          }
           response.json().then((data) => {
             content.innerHTML = JSON.stringify(data);
           });
