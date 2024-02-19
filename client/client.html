@@ -26,6 +26,26 @@
           console.log(response);
         });
       };
+      userForm.onsubmit = (e) => {
+        e.preventDefault();
+        const url = document.getElementById('urlField').value;
+        const method = document.getElementById('methodSelect').value;
+        if(method === 'get'){
+          //since get is default for fetch, we don't need to specify it
+          fetch(url).then((response) => {
+            console.log(response);
+            return response.json();
+          }).then((data) => {
+            content.innerHTML = JSON.stringify(data);
+          });
+        } else {
+          fetch(url, {method: 'HEAD'}).then((response) => {
+            console.log(response);
+            content.innerHTML = `<div>content-type:${response.headers.get('content-type')}</div>
+            <div>status:${response.status}</div>`;
+          });
+        }
+      };
     }
     window.onload = init;
   </script>

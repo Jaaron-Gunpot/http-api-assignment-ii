@@ -36,7 +36,7 @@ const notRealMeta = (request, response) => {
 };
 
 const addUser = (request, response, body) => {
-    console.log(`addUser:${body}`);
+  console.log(`addUser:${body}`);
 
   // default json message
   const responseJSON = {
