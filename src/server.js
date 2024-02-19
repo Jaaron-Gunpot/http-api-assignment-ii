@@ -43,7 +43,6 @@ const parseBody = (request, response, handler) => {
     // get a piece (or "chunk") of the body. Each time we do, we will put it in
     // the array. We will always recieve these chunks in the correct order.
     request.on('data', (chunk) => {
-        console.log("got some data");
         body.push(chunk);
     });
 
@@ -79,6 +78,8 @@ const onRequest = (request, response) => {
             return urlStruct.HEAD.notFound(request, response);
         }
         parseBody(request, response, urlStruct[request.method][parsedUrl.pathname]);
+        //I don't know why this return is needed and i am scared to remove it
+        return;
     }
 
     // if the method is served by the server, and the path is found, return the information

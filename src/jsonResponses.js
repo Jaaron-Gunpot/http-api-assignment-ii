@@ -36,8 +36,6 @@ const notRealMeta = (request, response) => {
 };
 
 const addUser = (request, response, body) => {
-  console.log(`addUser:${body}`);
-
   // default json message
   const responseJSON = {
     message: 'Name and age are both required.',
